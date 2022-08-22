@@ -1,0 +1,4 @@
+export const ADD_FAVORITES = 'ADD_FAVORITES';
+export const REMOVE_FAVORITES = 'REMOVE_FAVORITES';
+export const FETCH_DATA = 'FETCH_API';
+export const GET_NEXT_MOVIE_ID = 'GET_NEXT_MOVIE_ID';
