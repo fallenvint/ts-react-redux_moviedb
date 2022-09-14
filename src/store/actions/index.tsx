@@ -1,30 +1,27 @@
-import {ADD_FAVORITES, REMOVE_FAVORITES, FETCH_DATA, GET_NEXT_MOVIE_ID} from './actionTypes';
-import {IFavoriteObject} from '../../ts/interfaces';
+import {ActionTypes, FavoriteActionType, IData, IFavoriteMovieObject, MovieActionType} from '../../types';
 
-export const fetchMoviesAction = (payload: object) => {
+export const addFavoriteAction = (payload: IFavoriteMovieObject): FavoriteActionType => ({
+        type: ActionTypes.ADD_FAVORITES,
+        payload
+});
+
+export const removeFavoriteAction = (payload: number): FavoriteActionType => {
     return {
-        type: FETCH_DATA,
+        type: ActionTypes.REMOVE_FAVORITES,
         payload
     }
 };
 
-export const fetchNextIdAction = (payload: number) => {
+export const fetchMoviesAction = (payload: IData): MovieActionType => {
     return {
-        type: GET_NEXT_MOVIE_ID,
+        type: ActionTypes.FETCH_DATA,
         payload
     }
 };
 
-export const addFavoriteAction = (payload: IFavoriteObject) => {
+export const fetchNextIdAction = (payload: number): MovieActionType => {
     return {
-        type: ADD_FAVORITES,
-        payload
-    }
-};
-
-export const removeFavoriteAction = (payload: number) => {
-    return {
-        type: REMOVE_FAVORITES,
+        type: ActionTypes.GET_NEXT_MOVIE_ID,
         payload
     }
 };

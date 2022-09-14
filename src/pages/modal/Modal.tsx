@@ -3,23 +3,24 @@ import {Link, useParams} from 'react-router-dom';
 import {useDispatch, useSelector} from 'react-redux';
 import {addFavoriteAction, removeFavoriteAction} from '../../store/actions';
 import {asyncFetchDataAction} from '../../store/actions/asyncActions';
-import {IModalParams} from '../../ts/interfaces';
+import {IModalParams} from '../../types';
 import style from './Modal.module.css';
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 import {faChevronRight, faChevronLeft} from '@fortawesome/free-solid-svg-icons';
 import noposter from '../../img/no-image.png'
+import {favoritesSelector, moviesSelector} from '../../store/selectors';
 
 const posterUrl = 'https://image.tmdb.org/t/p/w342';
 
 const Modal: FC = () => {
     const {page = '', id = ''} = useParams() as IModalParams;
     const dispatch: any = useDispatch();
-    const storeFavorites = useSelector((state: any) => state.favorites);
-    const storeMovies = useSelector((state: any) => state.movies);
+    const storeFavorites = useSelector(favoritesSelector);
+    const storeMovies = useSelector(moviesSelector);
 
     const movies = storeMovies.data;
     const npMovieId = storeMovies.npMovieId;
-    const currentIndex = movies.results?.map((object: { id: number }) => object.id).indexOf(+id);
+    const currentIndex = movies.results?.map(object => object.id).indexOf(+id);
     const currentMovie = movies.results?.[currentIndex];
     const date = new Date(currentMovie?.release_date);
     const lastMovie = movies.results?.length === currentIndex + 1 && movies.total_pages === +page;

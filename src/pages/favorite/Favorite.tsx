@@ -1,14 +1,15 @@
 import React, {FC, useEffect} from 'react';
 import {useDispatch, useSelector} from 'react-redux';
+import {IFavoriteMovieObject} from '../../types';
 import {removeFavoriteAction} from '../../store/actions';
 import style from './Favorite.module.css';
 import noposter from '../../img/no-image.png';
-import {IFavoriteObject} from '../../ts/interfaces';
+import {favoritesSelector} from '../../store/selectors';
 
 const posterUrl = 'https://image.tmdb.org/t/p/w342';
 
 const Favorite: FC = () => {
-    const storeFavorite = useSelector((state:any) => state.favorites);
+    const storeFavorite = useSelector(favoritesSelector);
     const dispatch = useDispatch();
 
     useEffect(() => {
@@ -21,7 +22,7 @@ const Favorite: FC = () => {
                 <div className="page-title">My favorite</div>
                 <div className={`${style.favorites} page-content`}>
                     {
-                        storeFavorite.map((movie: IFavoriteObject) => {
+                        storeFavorite.map((movie: IFavoriteMovieObject) => {
                             return (
                                 <div className={style.favorite} key={movie.id}>
                                     <div className={style.favorite_movie}>

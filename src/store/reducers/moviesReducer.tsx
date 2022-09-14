@@ -1,18 +1,22 @@
-import {FETCH_DATA, GET_NEXT_MOVIE_ID} from '../actions/actionTypes';
+import {ActionTypes, IMoviesStoreState, MovieActionType} from '../../types';
 
-const initialState = {
-    data: {},
+const initialState: IMoviesStoreState = {
+    data: {
+        page: 1,
+        results: [],
+        total_pages: 1
+    },
     npMovieId: 1
 };
 
-export const moviesReducer = (state: object = initialState, action: { type: string, payload: object }) => {
+export const moviesReducer = (state = initialState, action: MovieActionType): IMoviesStoreState => {
     switch (action.type) {
-        case FETCH_DATA:
+        case ActionTypes.FETCH_DATA:
             return {
                 ...state,
                 data: action.payload
             };
-        case GET_NEXT_MOVIE_ID:
+        case ActionTypes.GET_NEXT_MOVIE_ID:
             return {
                 ...state,
                 npMovieId: action.payload

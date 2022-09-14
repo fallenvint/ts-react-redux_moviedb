@@ -3,11 +3,7 @@ import {useNavigate} from 'react-router-dom';
 import ReactPaginate from 'react-paginate';
 import cn from 'classnames';
 import style from './Pagination.module.css';
-
-export interface IPaginationProps {
-    page: number;
-    totalPage: number;
-}
+import {IPaginationProps} from '../../types';
 
 const Pagination: FC<IPaginationProps> = ({page, totalPage}) => {
     const navigate = useNavigate();

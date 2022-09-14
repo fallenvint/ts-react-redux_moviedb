@@ -1,11 +1,10 @@
-import {ADD_FAVORITES, REMOVE_FAVORITES} from '../actions/actionTypes';
-import {IFavoriteObject} from '../../ts/interfaces';
+import {ActionTypes, FavoriteActionType, IFavoriteMovieObject} from '../../types';
 
-export const favoritesReducer = (state: Array<IFavoriteObject> = [], action: { type: string, payload: object | number }) => {
+export const favoritesReducer = (state:Array<IFavoriteMovieObject> = [], action: FavoriteActionType):Array<IFavoriteMovieObject> => {
     switch (action.type) {
-        case ADD_FAVORITES:
-            return [action.payload].concat(...state);
-        case REMOVE_FAVORITES:
+        case ActionTypes.ADD_FAVORITES:
+            return [...[action.payload], ...state];
+        case ActionTypes.REMOVE_FAVORITES:
             return [...state.filter((item) => item.id !== action.payload)];
         default:
             return state;

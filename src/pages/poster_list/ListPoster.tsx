@@ -1,6 +1,6 @@
 import React, {FC} from 'react';
 import {Link} from 'react-router-dom';
-import {IListPoster} from '../../ts/interfaces'
+import {IListPoster} from '../../types'
 import noposter from '../../img/no-image.png'
 import style from './List.module.css';
 
